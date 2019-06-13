@@ -8,6 +8,8 @@ import com.orion.v13.entity.TProduct;
 import com.orion.v13.mapper.TProductMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 
+import java.util.List;
+
 /**
  * @author Orion
  * @Date 2019/6/12
@@ -21,4 +23,5 @@ public class ProductServiceImpl extends BaseServiceImpl<TProduct> implements IPr
     public IBaseDao<TProduct> getBaseDao() {
         return productMapper;
     }
+
 }

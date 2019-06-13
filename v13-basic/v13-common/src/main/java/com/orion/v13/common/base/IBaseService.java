@@ -1,5 +1,7 @@
 package com.orion.v13.common.base;
 
+import java.util.List;
+
 /**
  * @author Orion
  * @Date 2019/6/12
@@ -20,4 +22,6 @@ public interface IBaseService<T> {
     int updateByPrimaryKeyWithBLOBs(T record);
 
     int updateByPrimaryKey(T record);
+
+    public List<T> list();
 }

@@ -1,5 +1,7 @@
 package com.orion.v13.common.base;
 
+import java.util.List;
+
 /**
  * @author Orion
  * @Date 2019/6/12
@@ -41,5 +43,9 @@ public abstract class BaseServiceImpl<T> implements IBaseService<T> {
     public int updateByPrimaryKey(T record) {
 
         return getBaseDao().updateByPrimaryKey(record);
+    }
+
+    public List<T> list() {
+        return getBaseDao().list();
     }
 }
