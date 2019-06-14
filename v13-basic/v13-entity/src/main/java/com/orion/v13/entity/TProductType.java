@@ -2,7 +2,7 @@ package com.orion.v13.entity;
 
 import java.io.Serializable;
 
-public class TProductType{
+public class TProductType implements Serializable{
     private Long id;
 
     private Long pid;

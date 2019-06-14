@@ -1,5 +1,6 @@
 package com.orion.v13productservice;
 
+import com.github.pagehelper.PageInfo;
 import com.orion.v13.api.IProductService;
 import com.orion.v13.entity.TProduct;
 import org.junit.Assert;
@@ -26,6 +27,11 @@ public class V13ProductServiceApplicationTests {
     public void contextLoads2() {
         List<TProduct> list = productService.list();
         Assert.assertEquals(list.size(),1);
+    }
+    @Test
+    public void contextLoads3() {
+        PageInfo<TProduct> page = productService.page(1, 1);
+        System.out.println(page.getList().size());
     }
 
 }

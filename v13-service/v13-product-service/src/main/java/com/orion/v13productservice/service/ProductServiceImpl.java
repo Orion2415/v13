@@ -1,6 +1,8 @@
 package com.orion.v13productservice.service;
 
 import com.alibaba.dubbo.config.annotation.Service;
+import com.github.pagehelper.PageHelper;
+import com.github.pagehelper.PageInfo;
 import com.orion.v13.api.IProductService;
 import com.orion.v13.common.base.BaseServiceImpl;
 import com.orion.v13.common.base.IBaseDao;
@@ -24,4 +26,14 @@ public class ProductServiceImpl extends BaseServiceImpl<TProduct> implements IPr
         return productMapper;
     }
 
+    @Override
+    public PageInfo<TProduct> page(Integer pageIndex, Integer pageSize) {
+        //设置分页参数
+        PageHelper.startPage(pageIndex,pageSize);
+        //获取数据
+        List<TProduct> list =list();
+        //构建一个分页对象
+        PageInfo<TProduct> pageInfo = new PageInfo<TProduct>(list,2);
+        return pageInfo;
+    }
 }

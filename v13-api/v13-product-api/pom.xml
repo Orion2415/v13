@@ -26,6 +26,11 @@
             <artifactId>v13-mapper</artifactId>
             <version>2.0.6.RELEASE</version>
         </dependency>
+        <dependency>
+            <groupId>com.github.pagehelper</groupId>
+            <artifactId>pagehelper</artifactId>
+            <version>3.4.2</version>
+        </dependency>
     </dependencies>
 
 </project>

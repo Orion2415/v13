@@ -1,5 +1,6 @@
 package com.orion.v13.api;
 
+import com.github.pagehelper.PageInfo;
 import com.orion.v13.common.base.IBaseService;
 import com.orion.v13.entity.TProduct;
 
@@ -12,5 +13,6 @@ import java.util.List;
 
 public interface IProductService extends IBaseService<TProduct> {
     //单独扩展特殊的方法
+    public PageInfo<TProduct> page(Integer pageIndex, Integer pageSize);
 
 }
