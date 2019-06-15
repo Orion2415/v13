@@ -26,7 +26,7 @@
     delete from t_product_desc
     where id = #{id,jdbcType=BIGINT}
   </delete>
-  <insert id="insert" parameterType="com.orion.v13.entity.TProductDesc">
+  <insert id="insert" parameterType="com.orion.v13.entity.TProductDesc" keyProperty="id" useGeneratedKeys="true">
     insert into t_product_desc (id, product_id, product_desc
       )
     values (#{id,jdbcType=BIGINT}, #{productId,jdbcType=BIGINT}, #{productDesc,jdbcType=LONGVARCHAR}

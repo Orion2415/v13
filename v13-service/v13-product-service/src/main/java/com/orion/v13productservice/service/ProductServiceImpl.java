@@ -7,7 +7,10 @@ import com.orion.v13.api.IProductService;
 import com.orion.v13.common.base.BaseServiceImpl;
 import com.orion.v13.common.base.IBaseDao;
 import com.orion.v13.entity.TProduct;
+import com.orion.v13.entity.TProductDesc;
+import com.orion.v13.mapper.TProductDescMapper;
 import com.orion.v13.mapper.TProductMapper;
+import com.orion.v13.pojo.TProductVO;
 import org.springframework.beans.factory.annotation.Autowired;
 
 import java.util.List;
@@ -21,6 +24,8 @@ public class ProductServiceImpl extends BaseServiceImpl<TProduct> implements IPr
 
     @Autowired
     private TProductMapper productMapper;
+    @Autowired
+    private TProductDescMapper productDescMapper;
     @Override
     public IBaseDao<TProduct> getBaseDao() {
         return productMapper;
@@ -35,5 +40,31 @@ public class ProductServiceImpl extends BaseServiceImpl<TProduct> implements IPr
         //构建一个分页对象
         PageInfo<TProduct> pageInfo = new PageInfo<TProduct>(list,2);
         return pageInfo;
+    }
+
+    @Override
+    public long save(TProductVO vo) {
+        TProduct product = vo.getProduct();
+
+        product.setFlag(true);
+        //主键回传
+        int count = productMapper.insert(product);
+        //保存描述信息
+        String productDesc = vo.getProductDesc();
+        TProductDesc desc = new TProductDesc();
+        desc.setProductDesc(productDesc);
+        desc.setProductId(product.getId());
+        productDescMapper.insert(desc);
+
+        return product.getId();
+    }
+
+    @Override
+    public int deleteByPrimaryKey(Long id) {
+        TProduct product = new TProduct();
+        product.setId(id);
+        product.setFlag(false);
+        return productMapper.updateByPrimaryKeySelective(product);
+
     }
 }
