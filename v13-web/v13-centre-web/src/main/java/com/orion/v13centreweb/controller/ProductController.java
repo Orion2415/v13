@@ -1,6 +1,5 @@
 package com.orion.v13centreweb.controller;
 
-import ch.qos.logback.core.net.SyslogOutputStream;
 import com.alibaba.dubbo.config.annotation.Reference;
 import com.github.pagehelper.PageInfo;
 import com.orion.v13.api.IProductService;
@@ -9,10 +8,7 @@ import com.orion.v13.entity.TProduct;
 import com.orion.v13.pojo.TProductVO;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -70,6 +66,18 @@ public class ProductController {
             return new ResultBean("200","删除成功");
         }
         return new ResultBean("404","删除失败！");
+    }
+
+    //批量删除
+    @PostMapping("batchDel")
+    @ResponseBody
+    public ResultBean batchDel(@RequestParam List<Long> ids){
+        long count = productService.batchDel(ids);
+        if(count>0){
+            return new ResultBean("200","批量删除成功");
+        }
+        return new ResultBean("404","批量删除失败！");
+
     }
 
 }

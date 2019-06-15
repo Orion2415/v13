@@ -60,6 +60,13 @@ public class ProductServiceImpl extends BaseServiceImpl<TProduct> implements IPr
     }
 
     @Override
+    public long batchDel(List<Long> ids) {
+        //update t_product set flag=0 where id in (1,2,3)
+
+        return productMapper.batchUpdateFlag(ids);
+    }
+
+    @Override
     public int deleteByPrimaryKey(Long id) {
         TProduct product = new TProduct();
         product.setId(id);
